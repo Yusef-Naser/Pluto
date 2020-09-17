@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "PlutoView"
-  spec.version      = "0.0.1"
+  spec.version      = "0.0.3"
   spec.summary      = "PlutoView can add Collapse/expand header View."
 
   # This description is used to generate tags and improve search results.
