@@ -49,7 +49,7 @@ class SecondTab : CollectionViewTab {
 }
 ```
 3- **ScrollViewTab**
-- In this tab you can acess scrollView and the view inside it with call `parentView`, You can add your component inside `parentView`, but when you need to add bottom anchor for the last component you can use function `addBottomAnchor(view : UIView , constant : CGFloat)` and pass last component and positive constant from bottom like the [example](https://github.com/Yusef-Naser/CollapseLibrary/blob/master/PlutoExample/cells/FirstCell.swift).
+- In this tab you can acess scrollView and the view inside it with call `parentView`, You can add your component inside `parentView`, but when you need to add bottom anchor for the last component you can use function `addBottomAnchor(view : UIView , constant : CGFloat)` and pass last component and positive constant from bottom like the [example](https://github.com/Yusef-Naser/PlutoView/blob/master/PlutoExample/cells/FirstTab.swift).
 
 # how to use.
 - You can use Pluto with 2 methods "adding a header " and "without header"
