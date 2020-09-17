@@ -29,7 +29,7 @@ Pod::Spec.new do |spec|
           it as just tabs without adding header view
                    DESC
 
-  spec.homepage     = "https://github.com/Yusef-Naser/Pluto"
+  spec.homepage     = "https://github.com/Yusef-Naser/PlutoView"
   # spec.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 

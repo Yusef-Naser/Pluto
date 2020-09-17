@@ -6,6 +6,16 @@
 
 `PlutoView` is swift library for iOS to add Collapse / Expand header view with horizontal scroll tabs.
 
+# Installation
+
+### CocoaPods
+
+[CocoaPods](https://cocoapods.org) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate `PlutoView` into your Xcode project using CocoaPods, specify it in your `Podfile`:
+
+```ruby
+pod 'PlutoView'
+```
+
 # Main Tabs
 - There is 3 main tabs in Pluto `ScrollViewTab`, `TableViewTab`, `CollectionViewTab`
 
