@@ -37,6 +37,8 @@ open class PlutoView : UIView {
     
     private var heightHeaderView : NSLayoutConstraint?
     
+    private var heightTabsView : CGFloat = 0
+    
     private var pageIndex : Int = 0
     
     public init(maxHeightType : EnumHeightType , headerMinHeight : CGFloat =  50 + UIApplication.shared.statusBarFrame.height ) {
@@ -62,6 +64,12 @@ open class PlutoView : UIView {
     
     
     private var header  : UIView = {
+        let l = UIView()
+        l.backgroundColor = .gray
+        return l
+    }()
+    
+    private var tabs  : UIView = {
         let l = UIView()
         l.backgroundColor = .gray
         return l
@@ -99,6 +107,7 @@ open class PlutoView : UIView {
     private func addViews () {
         
         addSubview(header)
+        addSubview(tabs)
         addSubview(collectionView)
         
         header.translatesAutoresizingMaskIntoConstraints = false
@@ -108,8 +117,14 @@ open class PlutoView : UIView {
         heightHeaderView = header.heightAnchor.constraint(equalToConstant: headerMaxHeight )
         heightHeaderView?.isActive = true
         
+        tabs.translatesAutoresizingMaskIntoConstraints = false
+        tabs.topAnchor.constraint(equalTo: header.bottomAnchor, constant: 0).isActive = true
+        tabs.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        tabs.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        tabs.heightAnchor.constraint(equalToConstant: heightTabsView ).isActive = true
+        
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.topAnchor.constraint(equalTo: header.bottomAnchor , constant: 0).isActive = true
+        collectionView.topAnchor.constraint(equalTo: tabs.bottomAnchor , constant: 0).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: leadingAnchor , constant: 0).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: trailingAnchor , constant: 0).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: bottomAnchor , constant: 0).isActive = true
@@ -162,13 +177,23 @@ open class PlutoView : UIView {
         return cell
     }
     
-    open func addHeader(header : UIView) {
+    open func addHeader(header : UIView? , tabs : UIView? , heightTabs : CGFloat) {
         self.header.removeFromSuperview()
         self.collectionView.removeFromSuperview()
-        self.header = header
+        self.tabs.removeFromSuperview()
+        if let h = header {
+            self.header = h
+        }
+        if let t = tabs {
+            self.tabs = t
+            self.heightTabsView = heightTabs
+        }
+        
+        
         addViews()
     }
     
+  
     
     public func scrollToTab (index : Int) {
         guard (delegate?.getCountTabs() ?? 0) > index else {
@@ -179,6 +204,17 @@ open class PlutoView : UIView {
     
     public func reloadTabs () {
         collectionView.reloadData()
+    }
+    
+    public func reloadCell (index : Int) {
+        collectionView.reloadItems(at: [IndexPath(row: index , section: 0)])
+    }
+    
+    public func getCell (index : Int ) -> TabCell? {
+        guard let cell = collectionView.cellForItem(at: IndexPath(row: index , section: 0)) as? TabCell else {
+            return nil
+        }
+        return cell
     }
     
     
